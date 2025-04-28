@@ -1,16 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import "./AI.css"; // también nuevo
 
 function AI() {
+  const [selectedReport, setSelectedReport] = useState("stock");
+  const [productId, setProductId] = useState("");
+
+  const handleGeneratePDF = () => {
+    alert(
+      `Generando PDF de ${
+        selectedReport === "stock" ? "Stock" : "Predicción de demanda"
+      } para producto ID: ${productId}`
+    );
+  };
+
   return (
-    <div>
-      <h1>Generar reportes</h1>
-      <button>Stock</button>
-      <button>Predicción de demanda</button>
-      <p>
-        <strong>ID</strong> de Producto
-      </p>
-      <input type="text" />
-      <button>Generar pdf</button>
+    <div className="ai-container">
+      <h1>Generar Reportes</h1>
+
+      <div className="button-group">
+        <button
+          className={selectedReport === "stock" ? "active" : ""}
+          onClick={() => setSelectedReport("stock")}
+        >
+          Stock
+        </button>
+        <button
+          className={selectedReport === "demand" ? "active" : ""}
+          onClick={() => setSelectedReport("demand")}
+        >
+          Predicción de Demanda
+        </button>
+      </div>
+
+      <div className="input-group">
+        <label>ID de Producto</label>
+        <input
+          type="text"
+          value={productId}
+          onChange={(e) => setProductId(e.target.value)}
+          placeholder="Ingrese ID de producto"
+        />
+      </div>
+
+      <button className="generate-btn" onClick={handleGeneratePDF}>
+        Generar PDF
+      </button>
     </div>
   );
 }

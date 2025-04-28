@@ -1,0 +1,46 @@
+.inventory-container {
+  padding: 2rem;
+}
+
+.form-section {
+  background-color: #333;
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: #eee;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.form-section h2 {
+  margin-bottom: 1rem;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-section input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-section button {
+  background: linear-gradient(135deg, #333, #777);
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-section button:hover {
+  background: linear-gradient(135deg, #555, #999);
+}

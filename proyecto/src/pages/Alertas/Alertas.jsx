@@ -1,16 +1,33 @@
 import React from "react";
+import "./Alertas.css"; // Nuevo css que agregamos
 
-function Alertas() {
+function Alerts() {
+  const alerts = [
+    { message: "El producto Papas está", status: "CORTO", color: "red" },
+    {
+      message: "El producto Cerveza Corona está con",
+      status: "mucha demanda",
+      color: "green",
+    },
+    {
+      message: "El producto Vino Tinto está",
+      status: "sin demanda",
+      color: "yellow",
+    },
+  ];
+
   return (
-    <div>
-      <h1>Alertas</h1>
-      <ul>
-        <li>El producto Tornillos está CORTO en stock!</li>
-        <li>El producto Tuercas está con mucha demanda!</li>
-        <li>El producto Arandelas está sin demanda</li>
-      </ul>
+    <div className="alerts-container">
+      {alerts.map((alert, index) => (
+        <div key={index} className="alert-box">
+          <p>
+            {alert.message}{" "}
+            <span className={`status ${alert.color}`}>{alert.status}</span>!
+          </p>
+        </div>
+      ))}
     </div>
   );
 }
 
-export default Alertas;
+export default Alerts;

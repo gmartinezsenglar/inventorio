@@ -1,0 +1,36 @@
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.accept-btn,
+.reject-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.accept-btn {
+  background-color: #00c853; /* Verde éxito */
+  color: white;
+}
+
+.accept-btn:hover {
+  background-color: #00e676;
+  transform: scale(1.05);
+}
+
+.reject-btn {
+  background-color: #d32f2f; /* Rojo fuerte */
+  color: white;
+}
+
+.reject-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
