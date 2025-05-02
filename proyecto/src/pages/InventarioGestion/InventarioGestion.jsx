@@ -23,8 +23,6 @@ function InventarioGestion() {
 
   return (
     <div className="inventory-container">
-      <h1>Administrar Inventario</h1>
-
       <section className="form-section">
         <h2>Agregar Producto</h2>
         <label>Nombre del producto:</label>

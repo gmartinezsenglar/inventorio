@@ -15,8 +15,6 @@ function AI() {
 
   return (
     <div className="ai-container">
-      <h1>Generar Reportes</h1>
-
       <div className="button-group">
         <button
           className={selectedReport === "stock" ? "active" : ""}

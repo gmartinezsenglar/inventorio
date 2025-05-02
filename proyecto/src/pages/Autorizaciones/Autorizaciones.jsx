@@ -12,8 +12,6 @@ function Authorizations() {
 
   return (
     <div>
-      <h1>Autorizaciones</h1>
-
       <div
         style={{
           marginTop: "2rem",

@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
     if (username === "admin" && password === "admin") {
       localStorage.setItem("isAuthenticated", "true");
-      navigate("/inventory");
+      navigate("/inventario");
     } else {
       setError("Usuario o contraseña incorrectos");
     }
