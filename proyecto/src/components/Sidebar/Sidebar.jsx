@@ -1,9 +1,8 @@
-import React from "react";
+"use client";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-import userIcon from "../../assets/profile.png";
 
-function Sidebar() {
+function Sidebar({ isOpen, toggleSidebar }) {
   const links = [
     { to: "/inventario", label: "Inventario" },
     { to: "/inventariogestion", label: "Administrar inv." },
@@ -13,30 +12,25 @@ function Sidebar() {
   ];
 
   return (
-    <div className="sidebar">
-      <div className="top-links">
-        {links.map((link) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            className={({ isActive }) => (isActive ? "link active" : "link")}
-          >
-            {link.label}
-          </NavLink>
-        ))}
+    <>
+      <div className={`sidebar ${isOpen ? "open" : ""}`}>
+        <div className="top-links">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) => (isActive ? "link active" : "link")}
+              onClick={() => toggleSidebar()}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
       </div>
-      <div className="bottom-profile">
-        <NavLink
-          to="/Perfil"
-          className={({ isActive }) => (isActive ? "link active" : "link")}
-        >
-          <div className="profile-link-content">
-            <img src={userIcon} alt="User Icon" className="profile-img" />
-            <span>Perfil</span>
-          </div>
-        </NavLink>
-      </div>
-    </div>
+      {isOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
+    </>
   );
 }
 

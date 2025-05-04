@@ -2,19 +2,50 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #f0f0f0;
   color: #333;
+  height: 100%;
 }
+
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .layout {
   display: flex;
+  height: 100%;
 }
+
 .main {
   padding: 1rem;
   flex-grow: 1;
 }
+
 button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+/* Estilos para scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #566573;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #808b96;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7f8c8d;
 }

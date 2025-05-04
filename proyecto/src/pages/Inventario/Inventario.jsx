@@ -1,4 +1,3 @@
-import React from "react";
 import "./Inventario.css";
 
 function Inventory() {
@@ -62,37 +61,30 @@ function Inventory() {
   ];
   return (
     <div>
-      <table
-        style={{
-          width: "100%",
-          marginTop: "2rem",
-          backgroundColor: "#333",
-          color: "#eee",
-          borderRadius: "12px",
-          overflow: "hidden",
-        }}
-      >
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Categoría</th>
-            <th>Precio ($)</th>
-            <th>Stock</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>{product.price}</td>
-              <td>{product.stock}</td>
+      <div className="inventory-table-container">
+        <table className="inventory-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Precio ($)</th>
+              <th>Stock</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>{product.category}</td>
+                <td>{product.price}</td>
+                <td>{product.stock}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

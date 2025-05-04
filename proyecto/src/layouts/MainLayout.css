@@ -1,0 +1,27 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 1.5rem;
+  margin-top: 0;
+  min-height: calc(100vh - 64px);
+  background-color: #f0f0f0;
+  transition: padding-left 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .sidebar.open + .main-content {
+    padding-left: 250px;
+  }
+}
