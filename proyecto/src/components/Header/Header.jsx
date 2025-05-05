@@ -1,11 +1,18 @@
 "use client";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaSignOutAlt, FaUser } from "react-icons/fa";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo-removebg-preview.png";
+import { useAuth } from "../../context/AuthContext";
+// import logo from "../../assets/logo-removebg-preview.png";
 
 function Header({ toggleSidebar }) {
   const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
+
+  const handleProfileClick = () => {
+    navigate("/perfil");
+  };
+
   return (
     <header className="header">
       <div className="header-left">
@@ -17,16 +24,34 @@ function Header({ toggleSidebar }) {
           <FaBars />
         </button>
         {/* <div className="logo-container">
-          <img src={logo} alt="Logo" className="logo" />
+          <img src={logo || "/placeholder.svg"} alt="Logo" className="logo" />
         </div> */}
       </div>
-      <div
-        className="profile"
-        onClick={() => navigate("/perfil")}
-        role="button"
-        aria-label="Perfil"
-      >
-        <img src={require("../../assets/profile.png")} alt="Perfil" />
+
+      <div className="header-right">
+        <div className="user-info">
+          <span className="username">{currentUser?.name || "Usuario"}</span>
+          <span className="role-badge">
+            {currentUser?.role === "admin" ? "Admin" : "Empleado"}
+          </span>
+        </div>
+
+        <div className="header-actions">
+          <button
+            className="header-button"
+            onClick={handleProfileClick}
+            title="Perfil"
+          >
+            <FaUser />
+          </button>
+          <button
+            className="header-button logout-button"
+            onClick={logout}
+            title="Cerrar sesión"
+          >
+            <FaSignOutAlt />
+          </button>
+        </div>
       </div>
     </header>
   );

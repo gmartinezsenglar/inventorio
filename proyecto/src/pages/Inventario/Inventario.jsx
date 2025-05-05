@@ -1,90 +1,77 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { getProducts } from "../../utils/localStorage";
 import "./Inventario.css";
 
 function Inventory() {
-  const products = [
-    {
-      id: "001",
-      name: "Leche Entera",
-      category: "Alimentos",
-      price: 1200,
-      stock: 15,
-    },
-    {
-      id: "002",
-      name: "Pan de Molde",
-      category: "Alimentos",
-      price: 1500,
-      stock: 8,
-    },
-    {
-      id: "003",
-      name: "Manzanas",
-      category: "Verduras y Frutas",
-      price: 900,
-      stock: 25,
-    },
-    {
-      id: "004",
-      name: "Papas",
-      category: "Verduras y Frutas",
-      price: 800,
-      stock: 5,
-    },
-    {
-      id: "005",
-      name: "Cerveza Corona",
-      category: "Alcohol",
-      price: 1500,
-      stock: 12,
-    },
-    {
-      id: "006",
-      name: "Vino Tinto",
-      category: "Alcohol",
-      price: 4000,
-      stock: 7,
-    },
-    {
-      id: "007",
-      name: "Marlboro Gold",
-      category: "Cigarrillos",
-      price: 5000,
-      stock: 20,
-    },
-    {
-      id: "008",
-      name: "Coca-Cola 1.5L",
-      category: "Bebidas",
-      price: 2000,
-      stock: 18,
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Cargar productos desde localStorage
+    const loadProducts = () => {
+      const storedProducts = getProducts();
+      setProducts(storedProducts);
+      setLoading(false);
+    };
+
+    loadProducts();
+
+    // Escuchar cambios en localStorage para actualizar la tabla
+    const handleStorageChange = () => {
+      loadProducts();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Configurar un intervalo para verificar cambios en localStorage
+    // (útil cuando los cambios ocurren en la misma pestaña)
+    const interval = setInterval(loadProducts, 2000);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <div>
-      <div className="inventory-table-container">
-        <table className="inventory-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Categoría</th>
-              <th>Precio ($)</th>
-              <th>Stock</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                <td>{product.category}</td>
-                <td>{product.price}</td>
-                <td>{product.stock}</td>
+      {loading ? (
+        <div className="loading">Cargando inventario...</div>
+      ) : products.length === 0 ? (
+        <div className="empty-state">
+          <p>No hay productos en el inventario.</p>
+          <p>Para agregar productos, dirígete a "Administrar inv."</p>
+        </div>
+      ) : (
+        <div className="inventory-table-container">
+          <table className="inventory-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio ($)</th>
+                <th>Stock</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.id}</td>
+                  <td>{product.name}</td>
+                  <td>{product.category}</td>
+                  <td>{product.price}</td>
+                  <td className={product.stock <= 5 ? "low-stock" : ""}>
+                    {product.stock}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

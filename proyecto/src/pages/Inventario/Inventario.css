@@ -43,3 +43,39 @@
 .inventory-table tr:last-child td {
   border-bottom: none;
 }
+
+.low-stock {
+  color: #ff5252;
+  font-weight: bold;
+}
+
+.page-title {
+  margin-bottom: 1.5rem;
+  color: #566573;
+  font-weight: 600;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #566573;
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #566573;
+  color: #f0f0f0;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.empty-state p:first-child {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p:last-child {
+  opacity: 0.8;
+}

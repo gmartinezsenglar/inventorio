@@ -8,15 +8,19 @@ import AI from "../pages/AI/AI";
 import Perfil from "../pages/Perfil/Perfil";
 import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 import MainLayout from "../layouts/MainLayout";
 import LoginLayout from "../layouts/LoginLayout";
 
 function AppRoutes() {
   return (
     <Routes>
-      {/* Login Layout */}
-      <Route element={<LoginLayout />}>
-        <Route path="/" element={<Login />} />
+      {/* Login Layout - Solo accesible si NO está autenticado */}
+      <Route element={<PublicRoute />}>
+        <Route element={<LoginLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+        </Route>
       </Route>
 
       {/* Main App Layout (requiere login) */}
@@ -36,7 +40,7 @@ function AppRoutes() {
       </Route>
 
       {/* fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }
