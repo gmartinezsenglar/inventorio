@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { userService } from "../services/userService";
 
 // Crear el contexto
 const AuthContext = createContext();
@@ -26,37 +27,29 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Función para iniciar sesión
-  const login = (username, password) => {
-    // Credenciales para admin
-    if (username === "admin" && password === "admin") {
-      const user = {
-        username: "admin",
-        role: "admin",
-        name: "Administrador",
-      };
-      localStorage.setItem("user", JSON.stringify(user));
-      setCurrentUser(user);
-      return { success: true };
-    }
+  // Función para iniciar sesión con Supabase
+  const login = async (username, password) => {
+    try {
+      const result = await userService.login(username, password);
 
-    // Credenciales para empleado
-    else if (username === "empleado" && password === "empleado") {
-      const user = {
-        username: "empleado",
-        role: "employee",
-        name: "Empleado",
+      if (result.success) {
+        // Guardar usuario en localStorage para persistencia
+        localStorage.setItem("user", JSON.stringify(result.user));
+        setCurrentUser(result.user);
+        return { success: true };
+      } else {
+        return {
+          success: false,
+          error: result.error || "Error al iniciar sesión",
+        };
+      }
+    } catch (error) {
+      console.error("Error durante el login:", error);
+      return {
+        success: false,
+        error: "Error en el servidor. Intente nuevamente.",
       };
-      localStorage.setItem("user", JSON.stringify(user));
-      setCurrentUser(user);
-      return { success: true };
     }
-
-    // Credenciales inválidas
-    return {
-      success: false,
-      error: "Usuario o contraseña incorrectos",
-    };
   };
 
   // Función para cerrar sesión

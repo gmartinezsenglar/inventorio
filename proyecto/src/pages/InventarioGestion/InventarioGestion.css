@@ -72,16 +72,22 @@
   transition: all 0.3s;
   font-weight: 500;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
-.action-button:hover {
+.action-button:hover:not(:disabled) {
   background-color: #7f8c8d;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.action-button:active {
+.action-button:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.action-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .error-message,
@@ -119,4 +125,50 @@
 .role-notice p {
   margin: 0;
   font-weight: 500;
+}
+
+.input-with-button {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-button input {
+  flex-grow: 1;
+}
+
+.check-button {
+  background-color: #616a6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.check-button:hover:not(:disabled) {
+  background-color: #7f8c8d;
+}
+
+.check-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.product-details {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.product-details h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.product-details p {
+  margin: 0.25rem 0;
 }

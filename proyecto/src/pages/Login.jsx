@@ -81,7 +81,7 @@ function Login() {
           </button>
         </form>
 
-        <div className="login-info">
+        {/* <div className="login-info">
           <p>Credenciales de prueba:</p>
           <p>
             <strong>Admin:</strong> usuario: admin, contraseña: admin
@@ -89,7 +89,7 @@ function Login() {
           <p>
             <strong>Empleado:</strong> usuario: empleado, contraseña: empleado
           </p>
-        </div>
+        </div> */}
       </div>
 
       <footer className="login-footer">
